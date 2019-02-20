@@ -1,20 +1,22 @@
 
 
 
-const {getFilmsList}=require('../models/app-main-model')
+const appHeaderView = require('../views/app-header.html');
+const { getFilmsList } = require('../models/app-main-model');
+const appMainView = require('../views/app-main.html');
 
-const render=()=>{
 
-    let appMainView=require('../views/app-main.html');
+const render = async () => {
+    //渲染头部
+    $('#header').html(Handlebars.compile(appHeaderView)({ title: '猫眼电影' }));
 
-    getFilmsList((data)=>{
-        let template=Handlebars.compile(appMainView)
-        $('#main').html(template({films:data.movieList}));
-    });
+    let films=await getFilmsList();
+    let template = Handlebars.compile(appMainView)
+        $('#main').html(template({ films: films.movieList }));
 
 }
 
 
-module.exports={
+module.exports = {
     render
 }

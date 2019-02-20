@@ -1,18 +1,15 @@
 
-const api=require("../api");
+const api = require("../api");
 
 
-const getFilmsList=(callback)=>{
-   api.request({
-       url:"/ajax/movieOnInfoList?token=",
-       success:(data)=>{
-           callback(data);
-           console.log(data)
-       }
-})
+const getFilmsList = () => {
+
+    return api.request({
+        url: "/ajax/movieOnInfoList?token=",
+    })
 }
 
 
-module.exports={
+module.exports = {
     getFilmsList
 }
